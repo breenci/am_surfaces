@@ -7,6 +7,8 @@ dependencies:
   - flake8
   - isort
   - pip
+  - numpy
+  - matplotlib
   - pip:
     - python-dotenv
     - mkdocs
