@@ -24,22 +24,8 @@ def OTSU(image_path, blur=True, g_sigma=2, clear_border=True, crop=None, plot=Fa
     Segmentation workflow based on "Measure fluorescence intensity at the 
     nuclear envelope" example at: 
     https://scikit-image.org/docs/stable/auto_examples/applications/index.html
-
-    :param image_path: _description_
-    :type image_path: _type_
-    :param blur: _description_, defaults to True
-    :type blur: bool, optional
-    :param g_sigma: _description_, defaults to 2
-    :type g_sigma: int, optional
-    :param clear_border: _description_, defaults to True
-    :type clear_border: bool, optional
-    :param crop: _description_, defaults to None
-    :type crop: _type_, optional
-    :param plot: _description_, defaults to False
-    :type plot: bool, optional
-    :return: _description_
-    :rtype: _type_
     """
+    
     img = Image.open(image_path)
 
     # crop image if specified
