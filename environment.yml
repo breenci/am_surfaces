@@ -9,7 +9,11 @@ dependencies:
   - pip
   - numpy
   - matplotlib
+  - scikit-image
+  - scipy
+  - pandas
   - pip:
     - python-dotenv
     - mkdocs
+    - pillow
     - -e .
