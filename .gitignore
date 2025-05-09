@@ -1,6 +1,7 @@
 # Data
 /data/
 /references/
+/reports/
 
 # Mac OS-specific storage files
 .DS_Store
