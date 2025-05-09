@@ -12,6 +12,7 @@ dependencies:
   - scikit-image
   - scipy
   - pandas
+  - ipykernel
   - pip:
     - python-dotenv
     - mkdocs
