@@ -18,12 +18,13 @@ def plot_label_image(label_image, underlay_image=None):
 
 
 
-def OTSU(image_path: str, blur: bool = True, g_sigma: float = 2, 
-         clear_border: bool = True, 
-         crop: tuple[float, float, float, float] | None = None, 
-         plot: bool =False) -> dict:
+def glob_thresh(image_path: str, blur: bool = True, g_sigma: float = 2, 
+                clear_border: bool = True, 
+                crop: tuple[float, float, float, float] | None = None,
+                method: str ="otsu", 
+                plot: bool =False) -> dict:
     """
-    Implement OTSU thresholding-based image segmentation
+    Implement global thresholding-based image segmentation
     
     Segmentation workflow based on "Measure fluorescence intensity at the 
     nuclear envelope" example at: 
@@ -40,6 +41,8 @@ def OTSU(image_path: str, blur: bool = True, g_sigma: float = 2,
         crops the input image to the region defined by tuple. The box is a 
         4-tuple defining the left, upper, right, and lower pixel coordinate.
         Defaults to None.
+        method (str, optional): Thresholding method to use. Current options are
+        "otsu" and "triangle". Defaults to "otsu".
         plot (bool, optional): _description_. Defaults to False.
 
     Returns:
@@ -60,8 +63,15 @@ def OTSU(image_path: str, blur: bool = True, g_sigma: float = 2,
     if blur:
         img_arr = ski.filters.gaussian(img_arr, sigma=g_sigma)
     
-    # apply OTSU thresholding
-    threshold = ski.filters.threshold_otsu(img_arr)
+    # apply global thresholding
+    if method == "triangle":
+        threshold = ski.filters.threshold_triangle(img_arr)
+    elif method == "otsu":
+        threshold = ski.filters.threshold_otsu(img_arr)
+    else:
+        raise ValueError(f"Method {method} not recognized. Options are 'otsu' and 'triangle'")
+    
+    # create binary image
     binary = img_arr < threshold
     
     # fill holes
@@ -92,7 +102,7 @@ if __name__ == "__main__":
     # pd.DataFrame(regions_LPE0).to_csv("data/processed/test_LPE0.csv")
     
     path_to_image_CAM1 = "data/project_sharepoint/04_Sample03_IA_flat/20250502_IA_CCAM_M5/Acquisition_08.tif"
-    regions_CAM1 = OTSU(path_to_image_CAM1, blur=False, g_sigma=2, clear_border=False, crop=None, plot=True)
+    regions_CAM1 = glob_thresh(path_to_image_CAM1, blur=False, g_sigma=2, clear_border=False, crop=None, plot=True, method="triangle")
     
     plt.show()
 
