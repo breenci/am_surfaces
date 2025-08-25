@@ -7,6 +7,7 @@ import pandas as pd
 
 Image.MAX_IMAGE_PIXELS = 350998111
 
+
 def plot_label_image(label_image, underlay_image=None):
     """Plot the label image with optional underlay image"""
     
@@ -17,16 +18,37 @@ def plot_label_image(label_image, underlay_image=None):
 
 
 
-def OTSU(image_path, blur=True, g_sigma=2, clear_border=True, crop=None, plot=False):
+def OTSU(image_path: str, blur: bool = True, g_sigma: float = 2, 
+         clear_border: bool = True, 
+         crop: tuple[float, float, float, float] | None = None, 
+         plot: bool =False) -> dict:
     """
     Implement OTSU thresholding-based image segmentation
     
     Segmentation workflow based on "Measure fluorescence intensity at the 
     nuclear envelope" example at: 
     https://scikit-image.org/docs/stable/auto_examples/applications/index.html
+
+    Args:
+        image_path (str): Path to the image file
+        blur (bool, optional): If True, apply a Gaussian blur. Defaults to True.
+        g_sigma (float, optional): Standard deviation for Gaussian kernel. 
+        Defaults to 2.
+        clear_border (bool, optional): If True, remove any segments which touch
+        the border of the image or cropped region. Defaults to True.
+        crop (tuple[float, float, float, float] | None, optional): If not None, 
+        crops the input image to the region defined by tuple. The box is a 
+        4-tuple defining the left, upper, right, and lower pixel coordinate.
+        Defaults to None.
+        plot (bool, optional): _description_. Defaults to False.
+
+    Returns:
+       dict: region properties including label, centroid, area, and
+       equivalent_diameter_area
     """
     
-    img = Image.open(image_path)
+    # load image as grayscale
+    img = Image.open(image_path).convert("L")
 
     # crop image if specified
     if crop is not None:
@@ -62,14 +84,15 @@ def OTSU(image_path, blur=True, g_sigma=2, clear_border=True, crop=None, plot=Fa
         plot_label_image(label, underlay_image=img_arr)
     
     return regions
-    
+
+
 if __name__ == "__main__":
-    path_to_image_LPE0 = "data/project_sharepoint/02_Sample01__GL_concave/01_SEM_maps/20240724_LPE00_ArmSample_001_SESI.tif"
-    regions_LPE0 = OTSU(path_to_image_LPE0, blur=True, g_sigma=2, clear_border=True, crop=[0,0,2048,1400], plot=True)
-    pd.DataFrame(regions_LPE0).to_csv("data/processed/test_LPE0.csv")
+    # path_to_image_LPE0 = "data/project_sharepoint/02_Sample01__GL_concave/01_SEM_maps/20240724_LPE00_ArmSample_001_SESI.tif"
+    # regions_LPE0 = OTSU(path_to_image_LPE0, blur=False, g_sigma=2, clear_border=True, crop=[0,0,2048,1400], plot=True)
+    # pd.DataFrame(regions_LPE0).to_csv("data/processed/test_LPE0.csv")
     
-    path_to_image_CAM1 = "data/project_sharepoint/02_Sample01__GL_concave/01_SEM_maps/20241210_CAM01_Site3_SESI_Map.tif"
-    regions_CAM1 = OTSU(path_to_image_CAM1, blur=True, g_sigma=2, clear_border=True, crop=[4000, 4000, 8000, 8000], plot=True)
+    path_to_image_CAM1 = "data/project_sharepoint/04_Sample03_IA_flat/20250502_IA_CCAM_M5/Acquisition_08.tif"
+    regions_CAM1 = OTSU(path_to_image_CAM1, blur=False, g_sigma=2, clear_border=False, crop=None, plot=True)
     
     plt.show()
 
