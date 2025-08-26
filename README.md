@@ -4,9 +4,13 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-Investigate the effect of surface defects on the optical properties of Additively Manufactured (AM) mirrors.
+This project investigates the effect of surface defects on the optical properties of Additively Manufactured (AM) mirrors.
+
+In particular, it focuses on the characterization of pores on the surface of AM mirrors and their contribution to scattering performace. The code in this repository implements workflows to identify and measure pores from different datasets, and uses scattering models to estimate their contribution to the overall Bidirectional Reflectance Distribution Function (BRDF) of the mirror surface.
 
 ## Project Organization
+
+The project structure is adapted from the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org/) template, and is organized as follows:
 
 ```
 ├── LICENSE            <- Open-source license if one is chosen
@@ -66,6 +70,18 @@ conda env create -f environment.yml
 ```
 
 otherwise, you can install the required packages individually using pip.
+
+## Example Workflow
+
+A workflow for analyzing pores in microscope data and calculating their contribution to BRDF is implemented in the notebook `workflow-01_crb_LISA-microscope-workflow.ipynb`. This notebook demonstrates the following steps:
+
+1. Measure mirror surface with using LISA microscope
+
+2. Use image segmentation to identify and extract surface pores
+
+3. Analyze extracted pores to calculate shape, area, distribution etc.
+
+4. Use Peterson model to calculate BRDF contribution from the pores
 
 --------
 
