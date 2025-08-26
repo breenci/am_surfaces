@@ -10,7 +10,7 @@ Investigate the effect of surface defects on the optical properties of Additivel
 
 ```
 ├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
+├── Makefile           <- Makefile with convenience commands
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── external       <- Data from third party sources.
@@ -18,9 +18,6 @@ Investigate the effect of surface defects on the optical properties of Additivel
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
 │
 ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
 │                         the creator's initials, and a short `-` delimited description, e.g.
@@ -43,18 +40,9 @@ Investigate the effect of surface defects on the optical properties of Additivel
     │
     ├── __init__.py             <- Makes amsurf a Python module
     │
-    ├── config.py               <- Store useful variables and configuration
+    ├── BRDF.py               <- BRDF calculation functions
     │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
+    └── segment.py                <- Image segmentation functions
 ```
 
 --------
