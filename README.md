@@ -45,5 +45,27 @@ Investigate the effect of surface defects on the optical properties of Additivel
     └── segment.py                <- Image segmentation functions
 ```
 
+## Environment Setup
+
+The required packages for this project are listed in the `environment.yml` file. If you have make and conda installed, you can create the correct environment by running:
+
+```bash
+make create_environment
+```
+
+in the root directory of the project. This will create a conda environment name `am_surfaces` with the required packages installed (including the `amsurf` package itself in editable mode). If packages are added or updated, you can update the environment with:
+
+```bash
+make requirements
+```
+
+Alternatively, you can create the conda environment manually with:
+
+```
+conda env create -f environment.yml
+```
+
+otherwise, you can install the required packages individually using pip.
+
 --------
 
