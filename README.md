@@ -83,5 +83,9 @@ A workflow for analyzing pores in microscope data and calculating their contribu
 
 4. Use Peterson model to calculate BRDF contribution from the pores
 
+## SAM2 Set-Up
+
+Use the Segment Anything Model workflow requires additional steps in the installation process. SAM2 needs to be installed first before use. The code requires `python>=3.10`, as well as `torch>=2.5.1` and `torchvision>=0.20.1`. Please follow the instructions [here](https://pytorch.org/get-started/locally/) to install both PyTorch and TorchVision dependencies. 
+
 --------
 
