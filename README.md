@@ -87,5 +87,23 @@ A workflow for analyzing pores in microscope data and calculating their contribu
 
 Use the Segment Anything Model workflow requires additional steps in the installation process. SAM2 needs to be installed first before use. The code requires `python>=3.10`, as well as `torch>=2.5.1` and `torchvision>=0.20.1`. Please follow the instructions [here](https://pytorch.org/get-started/locally/) to install both PyTorch and TorchVision dependencies. 
 
+You can install SAM 2 on a GPU machine using:
+
+```bash
+pip install git+https://github.com/facebookresearch/sam2.git
+```
+
+The model also requires a checkpoint file to be downloaded separately. This can be done using the following commands:
+
+```bash
+cd sam_checkpoints && \
+./download_ckpts.sh && \
+cd ..
+```
+
+This should download the required checkpoints and place them in a folder called `sam_checkpoints` in the root directory of the project.
+
+SAM2 can then be used in the notebooks or scripts and is imported as `sam2`.
+
 --------
 
