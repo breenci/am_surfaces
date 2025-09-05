@@ -18,4 +18,5 @@ dependencies:
     - python-dotenv
     - mkdocs
     - pillow
+    - opencv-python
     - -e .
